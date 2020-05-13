@@ -4,87 +4,87 @@
     <!-- number buttons -->
     <div class="calculationDisplay">
       <span class="calculationText">
-        0
+        {{displayValue}}
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(1)">
       <span class="buttonText">
         1
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(2)">
       <span class="buttonText">
         2
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(3)">
       <span class="buttonText">
         3
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(4)">
       <span class="buttonText">
         4
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(5)">
       <span class="buttonText">
         5
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(6)">
       <span class="buttonText">
         6
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(7)">
       <span class="buttonText">
         7
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(8)">
       <span class="buttonText">
         8
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(9)">
       <span class="buttonText">
         9
       </span>
     </div>
-    <div class="calculatorButton numberButton">
+    <div class="calculatorButton numberButton" (click)="buttonClicked(0)">
       <span class="buttonText">
         0
       </span>
     </div>
 
     <!-- operatorButtons -->
-    <div class="calculatorButton operatorButton">
+    <div class="calculatorButton operatorButton" (click)="buttonClicked('/')">
       <span class="buttonText">
         ÷
       </span>
     </div>
-    <div class="calculatorButton operatorButton">
+    <div class="calculatorButton operatorButton" (click)="buttonClicked('*')">
       <span class="buttonText">
         x
       </span>
     </div>
-    <div class="calculatorButton operatorButton">
+    <div class="calculatorButton operatorButton" (click)="buttonClicked('-')">
       <span class="buttonText">
         -
       </span>
     </div>
-    <div class="calculatorButton operatorButton">
+    <div class="calculatorButton operatorButton" (click)="buttonClicked('+')">
       <span class="buttonText">
         +
       </span>
     </div>
-    <div class="calculatorButton operatorButton">
+    <div class="calculatorButton operatorButton" (click)="buttonClicked('=')">
       <span class="buttonText">
         =
       </span>
     </div>
-    <div class="calculatorButton allClearButton">
+    <div class="calculatorButton allClearButton" (click)="buttonClicked('ac')">
       <span class="buttonText">
         AC
       </span>
