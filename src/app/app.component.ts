@@ -25,6 +25,20 @@ export class AppComponent {
   equals() {
     let total = this.totalUp();
     this.displayValue = total;
+    let timestamp = this.getTimeStamp();
+  }
+
+  getTimeStamp() {
+    let currentDate = new Date();
+      let year = currentDate.getFullYear();
+      let month = currentDate.getMonth();
+      let date = currentDate.getDate();
+      let hour = currentDate.getHours();
+      let minute = currentDate.getMinutes();
+      let second = currentDate.getSeconds();
+      let dateString = year + "-" + (month + 1) + "-" + date + '(' + hour + ':' + 
+                     minute + ':' + second + ')';
+      return dateString;
   }
 
   allClear() {
