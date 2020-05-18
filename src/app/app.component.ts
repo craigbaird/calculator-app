@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Host } from '@angular/core';
 import { WebSocketService } from './web-socket.service';
 
 @Component({
@@ -10,14 +10,16 @@ import { WebSocketService } from './web-socket.service';
 export class AppComponent implements OnInit {
   title = 'sezzle-calculator-app';
   runningCalculation = [];
-  stringTotal;
+  calculation;
+  total;
   displayValue = 0;
+  calculations = [];
 
   constructor(private webSocketService: WebSocketService) {}
 
   ngOnInit() {
     this.webSocketService.listen('test event').subscribe((data) => {
-      console.log(data);
+      console.log('data: ', data);
     })
   }
 
@@ -35,6 +37,8 @@ export class AppComponent implements OnInit {
     let total = this.totalUp();
     this.displayValue = total;
     let timestamp = this.getTimeStamp();
+    this.webSocketService.emit('calculation', this.calculation);
+    this.calculation = '';
   }
 
   getTimeStamp() {
@@ -68,6 +72,14 @@ export class AppComponent implements OnInit {
   totalUp() {
     let stringToCalculate = this.getPrettyString();
     let total = eval(stringToCalculate);
+    this.createFullStringCalculation(stringToCalculate, total);
     return total;
   }
+
+  createFullStringCalculation(calc, total) {
+    this.calculation = calc + '=' + total;
+    this.calculations.unshift(this.calculation);
+    console.log(this.calculations);
+  }
+
 }

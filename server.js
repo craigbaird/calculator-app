@@ -18,8 +18,10 @@ app.listen(process.env.PORT || 8080, () => {
 // socket.io
 io.on('connection', function (socket) {
     console.log('A user connected');
-
     socket.emit('test event', 'here is some data');
+    socket.on('calculation', (calc) => {
+        console.log('calculation: ', calc);
+    })
 })
 
 server.listen(3000, () => {
