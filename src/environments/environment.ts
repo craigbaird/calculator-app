@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyD04M8qqcTGleZDPwq64pBFbmULujhJ29M",
+    authDomain: "sezzle-calculator-app-d2ac8.firebaseapp.com",
+    databaseURL: "https://sezzle-calculator-app-d2ac8.firebaseio.com",
+    projectId: "sezzle-calculator-app-d2ac8",
+    storageBucket: "sezzle-calculator-app-d2ac8.appspot.com",
+    messagingSenderId: "594710527236",
+    appId: "1:594710527236:web:8c4f7326248e9fd5e42451"
+  }
 };
 
 /*

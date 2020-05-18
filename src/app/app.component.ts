@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from './web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'sezzle-calculator-app';
   runningCalculation = [];
   stringTotal;
   displayValue = 0;
+
+  constructor(private webSocketService: WebSocketService) {}
+
+  ngOnInit() {
+    this.webSocketService.listen('test event').subscribe((data) => {
+      console.log(data);
+    })
+  }
 
   buttonClicked(value) {
     if (value === '=') {
