@@ -8,9 +8,8 @@ import { Observable } from 'rxjs';
 export class WebSocketService {
 
   socket: any;
-  // dev
-  // uri: string = 'ws://localhost:3000';
-  uri: string = 'ws://https://sezzle-calculator-app.herokuapp.com/'
+
+  uri: string = 'ws://localhost:3000';
 
   constructor() { 
     this.socket = io(this.uri);
