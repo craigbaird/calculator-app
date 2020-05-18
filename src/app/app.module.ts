@@ -6,10 +6,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+// import { AngularFireModule } from "@angular/fire";
+// import { AngularFireAuthModule } from "@angular/fire/auth";
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { environment } from '../environments/environment';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireAuthModule,
+    // AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
