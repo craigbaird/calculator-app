@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Host } from '@angular/core';
 import { WebSocketService } from './web-socket.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +14,23 @@ export class AppComponent implements OnInit {
   calculation;
   total;
   displayValue = 0;
-  calculations = [];
+  calculations: any;
+  currentNumber = [];
 
-  constructor(private webSocketService: WebSocketService) {}
+  constructor(private webSocketService: WebSocketService, private http: HttpClient) {}
 
   ngOnInit() {
     this.webSocketService.listen('test event').subscribe((data) => {
       console.log('data: ', data);
     })
+    this.http.get('/calculation').subscribe(data => {
+      console.log('DATA', data);
+      this.calculations = data;
+    })
   }
 
   buttonClicked(value) {
+    this.checkIfButtonIsNumber(value);
     if (value === '=') {
       this.equals();
     } else if (value == 'ac') {
@@ -31,6 +38,26 @@ export class AppComponent implements OnInit {
     } else {
       this.keepCalculating(value);
     }
+  }
+
+  checkIfButtonIsNumber(value) {
+    if (value != '/' && 
+        value != '*' &&
+        value != '-' &&
+        value != '+' &&
+        value != '=' &&
+        value != 'ac') {
+      this.currentNumber.push(value);  
+      this.updateDisplayValue();
+    } else {
+      this.currentNumber = [];
+    }
+  }
+
+  updateDisplayValue() {
+    let newString = this.currentNumber.toString();
+    let finalString = newString.replace(/,/g, '');
+    this.displayValue = Number(finalString);
   }
 
   equals() {
@@ -77,9 +104,7 @@ export class AppComponent implements OnInit {
   }
 
   createFullStringCalculation(calc, total) {
-    this.calculation = calc + '=' + total;
-    this.calculations.unshift(this.calculation);
-    console.log(this.calculations);
+    this.calculation = calc + '=' + total.toString;
   }
 
 }

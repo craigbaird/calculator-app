@@ -1,9 +1,14 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const bodyParser = require('body-parser');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient
+
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/dist/sezzle-calculator-app'));
 
@@ -11,6 +16,9 @@ app.get('/*', function(req,res) {
 
 res.sendFile(path.join(__dirname+'/dist/sezzle-calculator-app/index.html'));
 });
+
+const calculations = require('./routes/calculation');
+app.use('/calculation', calculations);
 
 // mongo
 const mongoUrl = 'mongodb://usera:rwezwqazcn2@ds151614.mlab.com:51614/sezzle-calculator-db';
@@ -28,9 +36,9 @@ mongo.connect(mongoUrl, {
     // collection.insertOne({username: 'usera', calculation: '6*7=42'}, (err, result) => {
     //     console.log('INSERTED', result);
     // })
-    collection.find().toArray((err, items) => {
-        console.log('all calculations: ', items);
-    })
+    // collection.find().toArray((err, items) => {
+    //     console.log('all calculations: ', items);
+    // })
 })
 
 app.listen(process.env.PORT || 8080, () => {
