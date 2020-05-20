@@ -9,3 +9,15 @@ Clone project and run 'npm install'. Run 'ng build', then 'node server.js' for a
 ## Live website
 
 This project is deployed on Heroku, at https://sezzle-calculator-app.herokuapp.com/ .
+
+## Technology used
+
+MongoDB
+MLab
+Express.js
+Angular
+Typescript
+Node.js
+Heroku
+
+
