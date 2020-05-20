@@ -6,9 +6,13 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient
 
-// Body parser middleware
+// body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+// custom routes
+const calculations = require('./routes/calculation');
+app.use('/calculations', calculations);
 
 app.use(express.static(__dirname + '/dist/sezzle-calculator-app'));
 
@@ -16,9 +20,6 @@ app.get('/*', function(req,res) {
 
 res.sendFile(path.join(__dirname+'/dist/sezzle-calculator-app/index.html'));
 });
-
-const calculations = require('./routes/calculation');
-app.use('/calculation', calculations);
 
 // mongo
 const mongoUrl = 'mongodb://usera:rwezwqazcn2@ds151614.mlab.com:51614/sezzle-calculator-db';
@@ -51,6 +52,7 @@ io.on('connection', function (socket) {
     socket.emit('test event', 'here is some data');
     socket.on('calculation', (calc) => {
         console.log('calculation: ', calc);
+        socket.emit('new calculation', calc);
     })
 })
 

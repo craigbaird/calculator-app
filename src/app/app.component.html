@@ -91,9 +91,9 @@
     </div>
   </div>
 
-  <div class="calculationHistoryDisplayContainer" *ngFor="let calculation of calculations">
+  <div class="calculationHistoryDisplayContainer" *ngFor="let calculation of calculationsList.slice(0,10)"> 
     <ul class="calculationsList">
-      <li>{{calculation}}</li>
+      <li class="calculationsListItem">{{calculation}}</li> 
     </ul>
   </div>
 

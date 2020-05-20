@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener, Host } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from './web-socket.service';
-import { HttpClient } from '@angular/common/http';
+import { CalculationsService } from './calculations.service';
 
 @Component({
   selector: 'app-root',
@@ -16,17 +16,19 @@ export class AppComponent implements OnInit {
   displayValue = 0;
   calculations: any;
   currentNumber = [];
+  calculationsList = [];
 
-  constructor(private webSocketService: WebSocketService, private http: HttpClient) {}
+  constructor(private webSocketService: WebSocketService, private calculationsService: CalculationsService) {}
 
   ngOnInit() {
     this.webSocketService.listen('test event').subscribe((data) => {
       console.log('data: ', data);
     })
-    this.http.get('/calculation').subscribe(data => {
-      console.log('DATA', data);
-      this.calculations = data;
+    this.webSocketService.listen('new calculation').subscribe((calc) => {
+      console.log('NEW!', calc);
+      this.calculationsList.unshift(calc);
     })
+    this.calculationsService.getCalculations();
   }
 
   buttonClicked(value) {
@@ -104,7 +106,7 @@ export class AppComponent implements OnInit {
   }
 
   createFullStringCalculation(calc, total) {
-    this.calculation = calc + '=' + total.toString;
+    this.calculation = calc + '=' + total.toString();
   }
 
 }

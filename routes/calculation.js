@@ -4,12 +4,23 @@ var Calculation = require('../models/Calculation.js');
 
 // /* GET ALL CALCULATIONS */
 router.get('/', function(req, res, next) {
-  console.log('in calculation');
-  Calculation.find(function (err, products) {
+  Calculation.find.toArray(function (err, items) {
     if (err) return next(err);
-    res.json(products);
+    console.log('data in server');
+    res.json(items);
   });
 });
+
+// router.get('/'), function (req, res, next) {
+//   Calculation.find()
+//   .then(calculations => {
+//     res.json(calculations);
+//   }).catch(err => {
+//     res.status(500).send({
+//       msg: err.message
+//     })
+//   })
+// }
 
 // /* GET SINGLE CALCULATION BY ID */
 // router.get('/:id', function(req, res, next) {
