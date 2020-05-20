@@ -12,12 +12,13 @@ This project is deployed on Heroku, at https://sezzle-calculator-app.herokuapp.c
 
 ## Technology used
 
-MongoDB
-MLab
-Express.js
-Angular
-Typescript
-Node.js
-Heroku
+MongoDB |
+MLab |
+Express.js |
+Angular |
+Typescript |
+Node.js |
+Heroku |
+Socket.io
 
 
