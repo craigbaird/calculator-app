@@ -1,9 +1,7 @@
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 
-var CalculationSchema = mongoose.Schema({
-    'calculation': String,
-    'timestamp': String,
-    'userid': String
-  });
+// var CalculationSchema = mongoose.Schema({
+//     'calculation': String
+//   });
 
-module.exports = mongoose.model('Calculation', CalculationSchema);
+// module.exports = mongoose.model('Calculation', CalculationSchema);

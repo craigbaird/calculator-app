@@ -67,7 +67,9 @@ export class AppComponent implements OnInit {
     this.displayValue = total;
     let timestamp = this.getTimeStamp();
     this.webSocketService.emit('calculation', this.calculation);
+    this.calculationsService.saveCalculation(this.calculation);
     this.calculation = '';
+    this.calculationsService.getCalculations();
   }
 
   getTimeStamp() {

@@ -12,9 +12,20 @@ export class CalculationsService {
 
   getCalculations() {
     console.log('in getCalculations');
-    this.http.get('/calculation').subscribe(data => {
-      console.log('Data in client', data);
+    this.http.get('calculations').subscribe((data:any) => {
       this.calculations = data;
-    })
+    }, error => {
+        console.log("There was a find error", error);
+    });
+  }
+
+  saveCalculation(calcToSave) {
+    console.log('in saveCalculation');
+    let calculation = {calculation: calcToSave}
+    this.http.post('calculations', calculation).subscribe((data:any) => {
+      console.log('calculation saved');
+    }, error => {
+      console.log("There was a save error", error);
+    });
   }
 }

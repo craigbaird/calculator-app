@@ -1,17 +1,41 @@
 var express = require('express');
 var router = express.Router();
-var Calculation = require('../models/Calculation.js');
+// var CalculationSchema = require('../models/Calculation.js');
+var mongoose = require('mongoose');
+
+var CalculationsSchema = mongoose.Schema({
+  'username': String,
+  'calculation': String
+});
+
+var Calculations = mongoose.model('Calculations', CalculationsSchema);
 
 // /* GET ALL CALCULATIONS */
 router.get('/', function(req, res, next) {
-  Calculation.find.toArray(function (err, items) {
-    if (err) return next(err);
-    console.log('data in server');
+  console.log('in node');
+  Calculations.find(), function (err, items) {
+    console.log('got stuff from mongo', items);
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      console.log(err);
+      // return next(err);
+    }
+    // if (err) return next(err);
     res.json(items);
-  });
+  };
+});
+
+router.post('/', function(req, res, next) {
+  console.log('in node');
+  Calculations.find(), function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  };
 });
 
 // router.get('/'), function (req, res, next) {
+//   console.log('in node');
 //   Calculation.find()
 //   .then(calculations => {
 //     res.json(calculations);
@@ -22,36 +46,16 @@ router.get('/', function(req, res, next) {
 //   })
 // }
 
-// /* GET SINGLE CALCULATION BY ID */
-// router.get('/:id', function(req, res, next) {
-//   Calculation.findById(req.params.id, function (err, post) {
-//     if (err) return next(err);
-//     res.json(post);
-//   });
-// });
-
 // /* SAVE CALCULATION */
-// router.post('/', function(req, res, next) {
-//   Calculation.create(req.body, function (err, post) {
-//     if (err) return next(err);
-//     res.json(post);
-//   });
-// });
-
-// /* UPDATE CALCULATION */
-// router.put('/:id', function(req, res, next) {
-//   Calculation.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-//     if (err) return next(err);
-//     res.json(post);
-//   });
-// });
-
-// /* DELETE CALCULATION */
-// router.delete('/:id', function(req, res, next) {
-//   Calculation.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-//     if (err) return next(err);
-//     res.json(post);
-//   });
-// });
+router.post('/', function(req, res, next) {
+  let calculationToSave = {
+    username: req.body.username,
+    calculation: req.body.calculation,
+  }
+  Calculation.create(calculationToSave, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 module.exports = router;

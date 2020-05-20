@@ -4,8 +4,7 @@ import { CalculationListComponent } from './components/calculation-list/calculat
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: 'home', component: AppComponent },
-  { path: 'calculation', component: CalculationListComponent},
+  { path: 'calculation', component: AppComponent},
   { path: '**', component: AppComponent }
 ];
 
