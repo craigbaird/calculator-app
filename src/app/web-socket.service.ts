@@ -12,7 +12,7 @@ export class WebSocketService {
   // dev
   // uri: string = 'ws://localhost:3000';
   // prod
-  uri: string = 'ws://sezzle-calculator-app.herokuapp.com';
+  uri: string = 'ws://sezzle-calculator-app.herokuapp.com:3000';
 
   constructor() { 
     this.socket = io(this.uri);
