@@ -39,7 +39,7 @@
     "socket.io-client": "^2.3.0",
     "tslib": "^1.10.0",
     "typescript": "~3.7.5",
-    "ws": "^7.3.0",
+    "ws": "^7.4.6",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
